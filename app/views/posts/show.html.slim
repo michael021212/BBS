@@ -1,2 +1,13 @@
-h1 Posts#show
-p Find me in app/views/posts/show.html.slim
+h1 = @post.title
+
+- @post.comments.each do |comment|
+  = comment
+
+/ = form_with model: @comment, local: true do |f|
+/   .form_group
+/     = f.label :body, 'コメント'
+/     = f.text_field :body, class:"form_control"
+/   .form_group
+/     = f.label :nickname, 'ニックネーム'
+/     = f.text_field :nickname, class:"form_control"
+/   = f.submit '書き込む', class:"btn btn-primary"
