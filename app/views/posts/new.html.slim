@@ -1,0 +1,16 @@
+h1 新規スレッド作成
+
+= render 'layouts/errors', model: @post
+
+= form_with model: @post, local: true do |f|
+  .form_group
+    = f.label :title, 'スレッドタイトル'
+    = f.text_field :title, class:"form_control"
+  .form_group
+    = f.label :nickname, 'ニックネーム'
+    = f.text_field :nickname, class:"form_control"
+  .custom-checkbox
+    = f.label :category_ids, 'カテゴリ'
+    = f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |b|
+      = b.label {b.check_box + b.text}
+  = f.submit 'スレッドを作成', class:"btn btn-primary"
