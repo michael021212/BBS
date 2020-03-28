@@ -1,11 +1,16 @@
 <h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <%= render "layouts/errors", model: resource %>
+
+  <div class="field">
+    <%= f.label :name, "Name" %><br />
+    <%= f.text_field :name, autocomplete: "name", placeholder: "(例)山田太郎" %>
+  </div>
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "(例)yamada@y" %>
   </div>
 
   <div class="field">
