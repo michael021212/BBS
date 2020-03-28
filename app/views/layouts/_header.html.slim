@@ -1,0 +1,31 @@
+header
+  nav.navbar.navbar-expand-lg.navbar-light.bg-light
+    .collapse.navbar-collapse
+      .navbar-nav
+        = link_to "BBS", root_path, class:"nav-item nav-link active"
+        = link_to "スレッド一覧", root_path, class:"nav-item nav-link"
+        = link_to "新規スレッド作成", new_post_path, class:"nav-item nav-link"
+        - if user_signed_in?
+          = link_to  "ログアウト", destroy_user_session_path, method: :delete, class:"nav-item nav-link"
+        - else
+          = link_to  "ログイン", new_user_session_path, class:"nav-item nav-link"
+
+    form.form-inline
+      input.form-control.mr-sm-2 aria-label="検索..." placeholder="検索..." type="search"
+      button.btn.btn-outline-success.my-2.my-sm-0 type="submit"  検索
+
+    / .nav_form.col-md-3
+      / = form_tag(search_path, :method => 'get') do
+      /   = search_field_tag (:search_word)
+      /   = hidden_field_tag :select, "1", checked: true
+      /   = label_tag :registered_address, "映画のタイトルで", class:"mr-1"
+      /   = submit_tag "検索", class:"btn btn-dark btn-sm rounded-pill"
+    / ul.nav_link.col-md-5
+      / li= link_to "人気の映画", movies_path
+      / li= link_to "レビューを探す", reviews_path
+      / li= link_to "ユーザーを探す", users_path
+      / li= link_to "ランキング", ranking_path
+      / - if user_signed_in?
+      /   li= link_to  "タイムライン", timeline_path
+    / .col-md-8
+
