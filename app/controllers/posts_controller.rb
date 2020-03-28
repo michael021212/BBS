@@ -2,8 +2,8 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, only: %i[create]
 
   def index
-    @q = Post.ransack(params[:q])
     @posts = @q.result(distinct: true).page(params[:page]).reverse_order
+    @count = @q.result.count
   end
 
   def show

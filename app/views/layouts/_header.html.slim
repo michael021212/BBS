@@ -1,6 +1,6 @@
 header
   nav.navbar.navbar-expand-lg.navbar-light.bg-light
-    .collapse.navbar-collapse
+    .collapse.navbar-collapse.col-md-7
       .navbar-nav
         = link_to "BBS", root_path, class:"nav-item nav-link active"
         = link_to "全スレッド", root_path, class:"nav-item nav-link"
@@ -11,10 +11,7 @@ header
         - else
           = link_to  "ログイン", new_user_session_path, class:"nav-item nav-link"
 
-    form.form-inline
-      input.form-control.mr-sm-2 aria-label="検索..." placeholder="検索..." type="search"
-      button.btn.btn-outline-success.my-2.my-sm-0 type="submit"  検索
-
+    .col-md-5= render 'layouts/search', model: @q
     / .nav_form.col-md-3
       / = form_tag(search_path, :method => 'get') do
       /   = search_field_tag (:search_word)
