@@ -3,7 +3,8 @@ header
     .collapse.navbar-collapse
       .navbar-nav
         = link_to "BBS", root_path, class:"nav-item nav-link active"
-        = link_to "スレッド一覧", root_path, class:"nav-item nav-link"
+        = link_to "全スレッド", root_path, class:"nav-item nav-link"
+        = link_to "カテゴリ一覧", categories_index_path, class:"nav-item nav-link"
         = link_to "新規スレッド作成", new_post_path, class:"nav-item nav-link"
         - if user_signed_in?
           = link_to  "ログアウト", destroy_user_session_path, method: :delete, class:"nav-item nav-link"
