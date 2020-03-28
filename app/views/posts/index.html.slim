@@ -1,0 +1,26 @@
+h1 全スレッド
+
+= link_to '新規スレッド作成', new_post_path, class:'btn btn-primary'
+
+.m-4
+
+table.table.table-hover
+  thread
+    tr
+      th scope="col" タイトル
+      th scope="col" ニックネーム
+      th scope="col" カテゴリ
+      th scope="col" 作成日時
+      th
+  tbody
+    - @posts.each do |post|
+      tr
+        td = link_to post_path(post) do
+          = post.title
+        td = post.nickname
+        td
+          - post.categories.map do |category|
+            = category.name + " "
+        td = post.created_at.strftime('%Y/%m/%d %H:%M')
+        - if post.user == current_user
+          td = link_to '削除', post_path(post), class:"btn btn-danger btn-sm", method: :delete, data: {confirm: 'このスレッドを削除してもよろしいですか？'}
