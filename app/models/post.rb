@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :user
-  has_many :comments
-  has_many :category_posts
+  has_many :comments, dependent: :destroy
+  has_many :category_posts, dependent: :destroy
   has_many :categories, through: :category_posts
   accepts_nested_attributes_for :category_posts
 

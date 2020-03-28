@@ -1,2 +1,28 @@
-h1 Posts#show
-p Find me in app/views/posts/show.html.slim
+h1 = @post.title
+h3 = @post.nickname
+h3 = @post.created_at.strftime('%Y/%m/%d %H:%M')
+
+.m-4
+
+table.table.table-striped
+  tbody
+    - @post.comments.each do |comment|
+      tr
+        td = comment.nickname
+        td = comment.body
+        td = comment.created_at.strftime('%Y/%m/%d %H:%M')
+        - if comment.user == current_user
+          td = link_to '削除', post_comment_path(comment), class:"btn btn-danger btn-sm", method: :delete, data: {confirm: 'このコメントを削除してもよろしいですか？'}
+
+= render 'layouts/errors', model: @comment
+
+= form_with(model: [@post,@comment] ,url: post_comments_path(@post), local: true) do |f|
+  .form_group
+    = f.hidden_field :post_id, class:"form_control"
+  .form_group
+    = f.label :nickname, 'ニックネーム'
+    = f.text_field :nickname, class:"form_control"
+  .form_group
+    = f.label :body, 'コメント'
+    = f.text_field :body, class:"form_control"
+  = f.submit '書き込む', class:"btn btn-primary"

@@ -5,5 +5,7 @@ Rails.application.routes.draw do
   # get 'posts/new'
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :posts, except: %i[edit update]
+  resources :posts, except: %i[edit update] do
+    resources :comments, only: %i[create destroy]
+  end
 end
