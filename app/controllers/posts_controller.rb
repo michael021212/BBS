@@ -16,13 +16,14 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new
+    @post_form = PostForm.new
   end
 
   def create
-    @post = current_user.posts.build(post_params)
-    if @post.save
-      redirect_to post_path(@post), notice: 'スレッドを作成しました'
+    @post_form = PostForm.new(post_params.merge(user_id: current_user.id))
+    if @post_form.save
+      id = Post.last
+      redirect_to post_path(id), notice: 'スレッドを作成しました'
     else
       render :new
     end
@@ -37,7 +38,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    user_columns = [:user_id, :title, :nickname, category_ids: []]
-    params.require(:post).permit(user_columns)
+    params.require(:post_form).permit(:user_id, :title, :nickname, :body, category_ids:[])
   end
 end

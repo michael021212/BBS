@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :posts, except: %i[edit update] do
-    resources :comments, only: %i[create destroy]
+    resource :comments, only: %i[create destroy]
   end
 
   resource :posts do

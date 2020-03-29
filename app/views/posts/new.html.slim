@@ -1,8 +1,8 @@
 h1 新規スレッド作成
 
-= render 'layouts/errors', model: @post
+= render 'layouts/errors', model: @post_form
 
-= form_with model: @post, local: true do |f|
+= form_with(model: @post_form, url: posts_path, local: true) do |f|
   .form_group
     = f.label :title, 'スレッドタイトル'
     = f.text_field :title, class:"form_control"
@@ -11,6 +11,9 @@ h1 新規スレッド作成
     = f.text_field :nickname, class:"form_control"
   .custom-checkbox
     = f.label :category_ids, 'カテゴリ'
-    = f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |b|
+    = f.collection_check_boxes(:category_ids, Category.all, :id, :name, include_hidden: false) do |b|
       = b.label {b.check_box + b.text}
+  .form_group
+    = f.label :body, '最初のコメント'
+    = f.text_field :body, class:"form_control"
   = f.submit 'スレッドを作成', class:"btn btn-primary"
