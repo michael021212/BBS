@@ -8,7 +8,11 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @comment = current_user.comments.build(post_id: params[:id])
+    if user_signed_in?
+      @comment = current_user.comments.build(post_id: params[:id])
+    else
+      @comment = Comment.new(post_id: params[:id])
+    end
   end
 
   def new
