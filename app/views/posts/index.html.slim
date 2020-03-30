@@ -1,6 +1,6 @@
 .row.w-100
   .col-md-2
     = render 'layouts/categories', model: @categories
-  .col-md-10
+  .col-md-10.box
     h1 = puts_search_word_if_exists
     = render 'posts/posts', model: @posts

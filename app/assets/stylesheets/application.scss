@@ -1,1 +1,23 @@
 @import "bootstrap";
+
+body {
+  background-color: rgb(211, 211, 211);
+}
+
+.box {
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background-color: #F4F5F7;
+}
+
+.card-header {
+  background-color: #F4F5F7;
+}
+
+.list-group {
+  .list-group-item {
+    background-color: #F4F5F7;
+  }
+}

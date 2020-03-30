@@ -1,6 +1,8 @@
 .row.w-100
   .col-md-2
     = render 'layouts/categories', model: @categories
-  .col-md-10
-    h1 #{@category.name}カテゴリ スレッド一覧
-    = render 'posts/posts', model: @posts
+  .col-md-10.box
+    div.h1
+      strong #{@category.name}カテゴリ スレッド一覧
+    div
+      = render 'posts/posts', model: @posts
