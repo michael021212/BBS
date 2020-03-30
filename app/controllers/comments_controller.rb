@@ -7,6 +7,7 @@ class CommentsController < ApplicationController
       redirect_to post_path(@comment.post_id), notice: '書き込みました'
     else
       @post = Post.find(params[:post_id])
+      @post_comments = @post.comments.page(params[:page])
       render 'posts/show'
     end
   end

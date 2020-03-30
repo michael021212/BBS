@@ -1,8 +1,12 @@
-h1 全スレッド
+h1 = puts_search_word_if_exists
 
 = link_to '新規スレッド作成', new_post_path, class:'btn btn-primary'
 
 .m-4
+
+.mb-3
+  = paginate @posts
+  = page_entries_info @posts
 
 table.table.table-hover
   thread

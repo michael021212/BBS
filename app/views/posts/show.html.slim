@@ -4,9 +4,13 @@ h3 = @post.created_at.strftime('%Y/%m/%d %H:%M')
 
 .m-4
 
+.mb-3
+  = paginate @post_comments
+  = page_entries_info @post_comments
+
 table.table.table-striped
   tbody
-    - @post.comments.each do |comment|
+    - @post_comments.each do |comment|
       tr
         td = comment.nickname
         td = comment.body
