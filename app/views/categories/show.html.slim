@@ -4,6 +4,10 @@ h1 #{@category.name}カテゴリ スレッド一覧
 
 .m-4
 
+.mb-3
+  = paginate @posts
+  = page_entries_info @posts
+
 table.table.table-hover
   thread
     tr
