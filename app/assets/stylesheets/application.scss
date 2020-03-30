@@ -19,5 +19,7 @@ body {
 .list-group {
   .list-group-item {
     background-color: #F4F5F7;
+    border:double #999999;
+    border-width:1px 0 1px 0;
   }
 }
