@@ -1,26 +1,6 @@
-h1 = puts_search_word_if_exists
-
-= link_to '新規スレッド作成', new_post_path, class:'btn btn-primary'
-
-.m-4
-
-.mb-3
-  = paginate @posts
-  = page_entries_info @posts
-
-table.table.table-hover
-  thread
-    tr
-      th scope="col" タイトル
-      th scope="col" ニックネーム
-      th scope="col" カテゴリ
-      th scope="col" 作成日時
-  tbody
-    - @posts.each do |post|
-      tr
-        td = link_to post_path(post) do
-          = post.title
-        td = post.nickname
-        td
-          = post.convert_to_string_categories
-        td = post.created_at.strftime('%Y/%m/%d %H:%M')
+.row.w-100
+  .col-md-2
+    = render 'layouts/categories', model: @categories
+  .col-md-10
+    h1 = puts_search_word_if_exists
+    = render 'posts/posts', model: @posts

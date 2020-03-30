@@ -1,30 +1,31 @@
-h1 = @post.title
-h3 = @post.nickname
-h3 = @post.created_at.strftime('%Y/%m/%d %H:%M')
+.row.w-100
+  .col-md-2
+    = render 'layouts/categories', model: @categories
+  .col-md-10
+    h1 = @post.title
+    h3 = @post.nickname
+    h3 = @post.created_at.strftime('%Y/%m/%d %H:%M')
 
-.m-4
+    .m-4
 
-.mb-3
-  = paginate @post_comments
-  = page_entries_info @post_comments
+    table.table.table-striped
+      tbody
+        - @post.comments.each.with_index(1) do |comment, i|
+          tr
+            td = i
+            td = comment.nickname
+            td = comment.body
+            td = comment.created_at.strftime('%Y/%m/%d %H:%M')
 
-table.table.table-striped
-  tbody
-    - @post_comments.each do |comment|
-      tr
-        td = comment.nickname
-        td = comment.body
-        td = comment.created_at.strftime('%Y/%m/%d %H:%M')
+    = render 'layouts/errors', model: @comment
 
-= render 'layouts/errors', model: @comment
-
-= form_with(model: [@post,@comment] ,url: post_comments_path(@post), local: true) do |f|
-  .form_group
-    = f.hidden_field :post_id, class:"form_control"
-  .form_group
-    = f.label :nickname, 'ニックネーム'
-    = f.text_field :nickname, class:"form_control"
-  .form_group
-    = f.label :body, 'コメント'
-    = f.text_field :body, class:"form_control"
-  = f.submit '書き込む', class:"btn btn-primary"
+    = form_with(model: [@post,@comment] ,url: post_comments_path(@post), local: true) do |f|
+      .form_group
+        = f.hidden_field :post_id, class:"form_control"
+      .form_group
+        = f.label :nickname, 'ニックネーム'
+        = f.text_field :nickname, class:"form_control"
+      .form_group
+        = f.label :body, 'コメント'
+        = f.text_field :body, class:"form_control"
+      = f.submit '書き込む', class:"btn btn-success"
