@@ -1,0 +1,11 @@
+- model.comments.each.with_index(1) do |comment, i|
+  .comment.mb-5
+    .comment_heading.small
+      span.comment_index.mr-3
+        = i
+      span.comment_nickname.mr-3
+        = comment.nickname
+      span.comment_created_at.mr-3
+        = comment.created_at.strftime('%Y/%m/%d %H:%M')
+    .comment-body.mt-1
+      strong = comment.body
