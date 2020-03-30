@@ -1,0 +1,27 @@
+= link_to '新規スレッド作成', new_post_path, class:'btn btn-success'
+
+.m-4
+
+.mb-3
+  = paginate model
+  = page_entries_info model
+
+table.table
+  thread
+    tr
+      th scope="col" タイトル
+      th scope="col" ニックネーム
+      th scope="col" カテゴリ
+      th scope="col" 作成日時
+  tbody
+    - model.each do |post|
+      tr
+        td = link_to post_path(post) do
+          = post.title
+        td = post.nickname
+        td
+          = post.convert_to_string_categories
+        td = post.created_at.strftime('%Y/%m/%d %H:%M')
+
+.mt-3
+  = paginate model

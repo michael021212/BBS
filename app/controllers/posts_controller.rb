@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: %i[create]
+  before_action :set_categories_for_partial, only: %i[index new show create]
 
   def index
     @posts = @q.result(distinct: true).page(params[:page]).reverse_order
@@ -8,7 +9,6 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @post_comments = @post.comments.page(params[:page])
     if user_signed_in?
       @comment = current_user.comments.build(post_id: params[:id])
     else

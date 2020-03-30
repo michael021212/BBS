@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   root to: 'posts#index'
-  get 'categories/index'
 
   devise_for :users
 
