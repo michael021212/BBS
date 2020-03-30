@@ -22,6 +22,5 @@ table.table.table-hover
           = post.title
         td = post.nickname
         td
-          - post.categories.map do |category|
-            = category.name + " "
+          = post.convert_to_string_categories
         td = post.created_at.strftime('%Y/%m/%d %H:%M')
