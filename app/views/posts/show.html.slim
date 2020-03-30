@@ -15,8 +15,6 @@ table.table.table-striped
         td = comment.nickname
         td = comment.body
         td = comment.created_at.strftime('%Y/%m/%d %H:%M')
-        - if comment.user == current_user
-          td = link_to '削除', post_comments_path(@post), class:"btn btn-danger btn-sm", method: :delete, data: {confirm: 'このコメントを削除してもよろしいですか？'}
 
 = render 'layouts/errors', model: @comment
 

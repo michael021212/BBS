@@ -4,11 +4,11 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :posts, except: %i[edit update] do
-    resource :comments, only: %i[create destroy]
+  resources :posts, except: %i[edit update destroy] do
+    resource :comments, only: %i[create]
   end
 
   resource :posts do
-    resources :categories, except: %i[index]
+    resources :categories, only: %i[show]
   end
 end
