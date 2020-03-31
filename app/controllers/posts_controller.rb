@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: %i[create]
+  before_action :set_categories_for_partial, only: %i[index new show create]
 
   def index
     @posts = @q.result(distinct: true).page(params[:page]).reverse_order
@@ -8,32 +9,30 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @comment = current_user.comments.build(post_id: params[:id])
+    if user_signed_in?
+      @comment = current_user.comments.build(post_id: params[:id])
+    else
+      @comment = Comment.new(post_id: params[:id])
+    end
   end
 
   def new
-    @post = Post.new
+    @post_form = PostForm.new
   end
 
   def create
-    @post = current_user.posts.build(post_params)
-    if @post.save
-      redirect_to post_path(@post), notice: 'スレッドを作成しました'
+    @post_form = PostForm.new(post_params.merge(user_id: current_user.id))
+    if @post_form.save
+      id = Post.last
+      redirect_to post_path(id), notice: 'スレッドを作成しました'
     else
       render :new
     end
   end
 
-  def destroy
-    post = Post.find(params[:id])
-    post.destroy!
-    redirect_to request.referer, alert: "スレッドを削除しました"
-  end
-
   private
 
   def post_params
-    user_columns = [:user_id, :title, :nickname, category_ids: []]
-    params.require(:post).permit(user_columns)
+    params.require(:post_form).permit(:user_id, :title, :nickname, :body, category_ids:[])
   end
 end

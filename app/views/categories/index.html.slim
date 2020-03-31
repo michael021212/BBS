@@ -1,6 +1,0 @@
-h1 カテゴリ一覧
-
-ul.list-group.list-group-flush
-  - @categories.each do |category|
-    = link_to posts_category_path(id: category.id)
-      li.list-group-item = category.name

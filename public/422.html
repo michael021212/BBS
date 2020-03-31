@@ -56,12 +56,18 @@
 
 <body class="rails-default-error-page">
   <!-- This file lives in public/422.html -->
-  <div class="dialog">
+  <div class="status-area">
+    <div class="status-title">BBS</div>
+    <br>
     <div>
-      <h1>The change you wanted was rejected.</h1>
-      <p>Maybe you tried to change something you didn't have access to.</p>
+      <strong>
+        <span class="status-code">422<span class="status-text">Unprocessable Entity</span></span>
+      </strong>
+      <div>
+        <p>お探しのページを表示できません。</p>
+      </div>
+      <a href="/">トップページへ</a>
     </div>
-    <p>If you are the application owner check the logs for more information.</p>
   </div>
 </body>
 </html>

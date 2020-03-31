@@ -1,4 +1,7 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!, only: %i[create]
+  before_action :set_categories_for_partial, only: %i[create]
+
   def create
     @comment = current_user.comments.build(comment_params)
     if @comment.save

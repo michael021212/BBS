@@ -1,28 +1,27 @@
-h1 = @post.title
-h3 = @post.nickname
-h3 = @post.created_at.strftime('%Y/%m/%d %H:%M')
+.row.w-100
+  .col-md-2
+    = render 'layouts/categories', model: @categories
+  .col-md-10
+    .post_heading.box
+      .post_title.h1
+        strong = @post.title
+      .post_info.row.ml-0.mr-0
+        span.mr-3 = @post.created_at.strftime('%Y/%m/%d %H:%M')
+        span = @post.nickname
 
-.m-4
+    .m-4
+    .post_comments.box
+      = render 'comments/post_comments', model: @post
 
-table.table.table-striped
-  tbody
-    - @post.comments.each do |comment|
-      tr
-        td = comment.nickname
-        td = comment.body
-        td = comment.created_at.strftime('%Y/%m/%d %H:%M')
-        - if comment.user == current_user
-          td = link_to '削除', post_comment_path(comment), class:"btn btn-danger btn-sm", method: :delete, data: {confirm: 'このコメントを削除してもよろしいですか？'}
-
-= render 'layouts/errors', model: @comment
-
-= form_with(model: [@post,@comment] ,url: post_comments_path(@post), local: true) do |f|
-  .form_group
-    = f.hidden_field :post_id, class:"form_control"
-  .form_group
-    = f.label :nickname, 'ニックネーム'
-    = f.text_field :nickname, class:"form_control"
-  .form_group
-    = f.label :body, 'コメント'
-    = f.text_field :body, class:"form_control"
-  = f.submit '書き込む', class:"btn btn-primary"
+    .comment_form.box.mb-5
+      = render 'layouts/errors', model: @comment
+      = form_with(model: [@post,@comment] ,url: post_comments_path(@post), local: true) do |f|
+        .form_group
+          = f.hidden_field :post_id, class:"form_control"
+        .form_group
+          = f.label :nickname, 'ニックネーム'
+          = f.text_field :nickname, class:"form_control"
+        .form_group
+          = f.label :body, 'コメント'
+          = f.text_area :body, class:"form_control", style:"width: 50%;"
+        = f.submit '書き込む', class:"btn btn-success"

@@ -1,12 +1,28 @@
 ---
   ja:
     activerecord:
+      models:
+        comment: "コメント"
+      attributes:
+        comment:
+          body: "コメント"
+          nickname: "ニックネーム"
       errors:
         messages:
+          blank: を入力してください
           record_invalid: 'バリデーションに失敗しました: %{errors}'
           restrict_dependent_destroy:
             has_one: "%{record}が存在しているので削除できません"
             has_many: "%{record}が存在しているので削除できません"
+    activemodel:
+      models:
+        post_form: "スレッド"
+      attributes:
+        post_form:
+          title: "タイトル"
+          nickname: "ニックネーム"
+          category_ids: "カテゴリ"
+          body: "コメント"
     date:
       abbr_day_names:
       - 日
