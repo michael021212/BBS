@@ -2,6 +2,10 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_query
 
+  def after_sign_in_path_for(resource)
+    root_path
+  end
+
   def set_query
     @q = Post.joins(:comments).ransack(params[:q])
   end
