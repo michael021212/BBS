@@ -4,3 +4,9 @@ categories.each do |name|
 end
 
 User.create(name: '山田太郎', email: 'yamada@y', password: '000000')
+
+Post.create(user_id: 1, title: '【悲報】オリンピック延期', nickname: 'やまだ')
+
+Comment.create(user_id: 1, post_id: 1, body: 'しょうがないね', nickname: 'やまだ')
+
+Category_post.create(category_id: 1, post_id: 1)
