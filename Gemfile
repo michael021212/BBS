@@ -64,3 +64,7 @@ gem 'devise'
 gem 'kaminari'
 gem 'ransack'
 gem 'dotenv-rails'
+
+group :production do
+  gem 'mysql2'
+end
