@@ -9,4 +9,4 @@ Post.create(user_id: 1, title: '【悲報】オリンピック延期', nickname:
 
 Comment.create(user_id: 1, post_id: 1, body: 'しょうがないね', nickname: 'やまだ')
 
-Category_post.create(category_id: 1, post_id: 1)
+CategoryPost.create(category_id: 1, post_id: 1)
