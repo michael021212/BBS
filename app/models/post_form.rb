@@ -18,7 +18,6 @@ class PostForm
     category_ids.each do |ci|
       post.category_posts.build(category_id: ci.to_i) if !ci.empty?
     end
-    byebug
     return post.save
   end
 end
