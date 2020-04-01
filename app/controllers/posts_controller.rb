@@ -4,7 +4,6 @@ class PostsController < ApplicationController
 
   def index
     @posts = @q.result(distinct: true).page(params[:page]).reverse_order
-    @count = @q.result.count
   end
 
   def show
