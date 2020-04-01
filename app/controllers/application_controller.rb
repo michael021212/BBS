@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_query
-    @q = Post.joins(:comments).ransack(params[:q])
+    @q = Post.ransack(params[:q])
   end
 
   protected
