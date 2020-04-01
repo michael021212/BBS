@@ -15,7 +15,7 @@
 
     .comment_form.box.mb-5
       = render 'layouts/errors', model: @comment
-      = form_with(model: [@post,@comment] ,url: post_comments_path(@post), local: true) do |f|
+      = form_with(model: [@post,@comment] ,url: post_path(@post), local: true) do |f|
         .form_group
           = f.hidden_field :post_id, class:"form_control"
         .form_group
