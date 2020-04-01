@@ -19,7 +19,7 @@ table.table
         td = link_to post_path(post) do
           = post.title
         td = post.nickname
-        td
+        td.category_names
           = post.convert_to_string_categories
         td = post.created_at.strftime('%Y/%m/%d %H:%M')
 
