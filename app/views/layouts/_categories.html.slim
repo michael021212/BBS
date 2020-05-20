@@ -1,5 +1,5 @@
 .card.m-2
-  strong.card-header カテゴリの一覧
+  strong.card-header カテゴリ一覧
   ul.list-group
     - model.each do |category|
       = link_to posts_category_path(id: category.id)
